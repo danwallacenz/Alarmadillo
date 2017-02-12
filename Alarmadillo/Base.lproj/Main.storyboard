@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--TEST-->
         <scene sceneID="L2Y-xE-b4M">
             <objects>
                 <tableViewController id="4wO-M3-SyC" customClass="ViewController" customModule="Alarmadillo" customModuleProvider="target" sceneMemberID="viewController">
@@ -52,7 +52,7 @@
                             <outlet property="delegate" destination="4wO-M3-SyC" id="6Qe-xc-GkE"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="PFP-Kh-Rfd"/>
+                    <navigationItem key="navigationItem" title="TEST" id="PFP-Kh-Rfd"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rlm-Ln-M5r" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -74,7 +74,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name  this group" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="H0f-Rf-l8Y">
+                                        <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name this group" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="H0f-Rf-l8Y">
                                             <rect key="frame" x="8" y="10.5" width="359" height="21"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -319,9 +319,12 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="JEt-7n-d9f" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="z3s-oO-Qmy">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="z3s-oO-Qmy">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
