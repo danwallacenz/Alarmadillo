@@ -51,7 +51,10 @@ class GroupViewController: UITableViewController, UITextFieldDelegate {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         group.alarms.remove(at: indexPath.row)
-        tableView.deleteRows(at: [indexPath], with: .automatic)
+        tableView.deleteRows(at: [indexPath], with: .
+            automatic)
+        
+        save()
     }
     
     @IBAction func switchChanged(_ sender: UISwitch) {
@@ -60,11 +63,14 @@ class GroupViewController: UITableViewController, UITextFieldDelegate {
         } else {
             group.enabled = sender.isOn
         }
+        save()
     }
 
     func textFieldDidEndEditing(_ textField: UITextField) {
         group.name = textField.text!
         title = group.name
+        
+        save()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -77,6 +83,8 @@ class GroupViewController: UITableViewController, UITextFieldDelegate {
         group.alarms.append(newAlarm)
         
         performSegue(withIdentifier: "EditAlarm", sender: newAlarm)
+        
+        save()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -146,7 +154,6 @@ class GroupViewController: UITableViewController, UITextFieldDelegate {
                 // set the switch up with the playSoundTag tag so we know which one was changed later on
                 cellSwitch.tag = playSoundTag
             }
-            
             return cell
             
         default:
@@ -162,6 +169,10 @@ class GroupViewController: UITableViewController, UITextFieldDelegate {
             
             return cell
         }
+    }
+    
+    func save() {
+        NotificationCenter.default.post(name: Notification.Name("save"), object: nil)
     }
     
     // fix layout alignment

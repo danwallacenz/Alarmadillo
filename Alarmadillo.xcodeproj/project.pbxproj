@@ -64,12 +64,12 @@
 		3C9BFB3F1E4FDCE900E59C5D /* Alarmadillo */ = {
 			isa = PBXGroup;
 			children = (
+				3C9BFB421E4FDCE900E59C5D /* ViewController.swift */,
 				3C9BFB521E4FFD3E00E59C5D /* GroupViewController.swift */,
-				3C9BFB5B1E50342800E59C5D /* Helper.swift */,
 				3C9BFB541E4FFD6200E59C5D /* AlarmViewController.swift */,
+				3C9BFB5B1E50342800E59C5D /* Helper.swift */,
 				3C9BFB5A1E50022300E59C5D /* Model */,
 				3C9BFB401E4FDCE900E59C5D /* AppDelegate.swift */,
-				3C9BFB421E4FDCE900E59C5D /* ViewController.swift */,
 				3C9BFB441E4FDCE900E59C5D /* Main.storyboard */,
 				3C9BFB471E4FDCE900E59C5D /* Assets.xcassets */,
 				3C9BFB491E4FDCE900E59C5D /* LaunchScreen.storyboard */,
