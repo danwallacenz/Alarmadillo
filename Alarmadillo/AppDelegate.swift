@@ -14,9 +14,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+
+        let center = UNUserNotificationCenter.current()
+        
+        if let navController = window?.rootViewController as? UINavigationController {
+            if let viewController = navController.viewControllers[0] as? ViewController {
+                // if we're here, it means we found our active `ViewController` object
+                center.delegate = viewController
+            }
+        }
+        
+        // create the three actions we want for our alert
+        let show = UNNotificationAction(identifier: "show", title: "Show Group", options: .foreground)
+        
+        let destroy = UNNotificationAction(identifier: "destroy", title: "Destroy Group", options: [.destructive, .authenticationRequired])
+        
+        let rename = UNTextInputNotificationAction(identifier: "rename", title: "Rename Group", options: [], textInputButtonTitle: "Rename", textInputPlaceholder: "Type the new name here")
+        
+        // wrap the actions inside a category
+        let category = UNNotificationCategory(identifier: "alarm", actions: [show, rename, destroy], intentIdentifiers: [], options: [.customDismissAction])
+        
+        // register the category with the system
+        center.setNotificationCategories([category])
+
         return true
     }
 
@@ -41,7 +62,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
 }
 

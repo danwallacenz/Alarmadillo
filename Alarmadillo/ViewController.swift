@@ -192,9 +192,9 @@ class ViewController: UITableViewController {
         dateComponents.minute = cal.component(.minute, from: alarm.time)
         
         // create a trigger matching those date components, set to repeat
-//        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
         // for testing
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3, repeats: false)
+//        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3, repeats: false)
         
         
         // combine the content and the trigger to create a notification request
@@ -236,3 +236,93 @@ class ViewController: UITableViewController {
     }
 }
 
+extension ViewController: UNUserNotificationCenterDelegate {
+    
+    /// when app is running
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        
+            completionHandler([.alert])
+    }
+    
+    /// app in background or on lock screen
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        
+        // pull out the buried userInfo dictionary
+        let userInfo = response.notification.request.content.userInfo
+        
+        if let groupID = userInfo["group"] as? String {
+            // if we got a group ID, we're good to go!
+            switch response.actionIdentifier {
+            
+            // the user swiped to unlock; do nothing
+            case UNNotificationDefaultActionIdentifier:
+                print("Default identifier - swiped to unlock or dimiss")
+                
+            // the user dismissed the alert; do nothing
+            case UNNotificationDismissActionIdentifier:
+                print("Dismiss identifier")
+                
+            // the user asked to see the group, so call display()
+            case "show":
+                display(group: groupID)
+                break
+                
+            // the user asked to destroy the group, so call destroy()
+            case "destroy":
+                destroy(group: groupID)
+                break
+                
+            // the user asked to rename the group, so safely unwrap their text response and call rename()
+            case "rename":
+                if let textResponse = response as? UNTextInputNotificationResponse {
+                    rename(group: groupID, newName: textResponse.userText)
+                }
+                break
+                
+            default:
+                break
+            }
+        }
+        
+        // you need to call the completion handler when you're done
+        completionHandler()
+    }
+    
+    func display(group groupID: String) {
+        
+        _ = navigationController?.popToRootViewController(animated: false)
+        
+        for group in groups {
+            if group.id == groupID {
+                performSegue(withIdentifier: "EditGroup", sender: group)
+                return
+            }
+        }
+    }
+    
+    func destroy(group groupID: String) {
+        _ = navigationController?.popToRootViewController(animated: false)
+        
+        for (index, group) in groups.enumerated() {
+            if group.id == groupID {
+                groups.remove(at: index)
+                break
+            }
+        }
+        save()
+        load()
+    }
+    
+    func rename(group groupID: String, newName: String) {
+        _ = navigationController?.popToRootViewController(animated: false)
+        
+        for group in groups {
+            if group.id == groupID {
+                group.name = newName
+                break
+            }
+        }
+        save()
+        load()
+    }
+}
