@@ -56,7 +56,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rlm-Ln-M5r" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1320.8" y="150.67466266866569"/>
+            <point key="canvasLocation" x="1532" y="85"/>
         </scene>
         <!--Group View Controller-->
         <scene sceneID="jyQ-Wp-4ke">
@@ -157,7 +157,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RIy-cf-XgL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2034" y="151"/>
+            <point key="canvasLocation" x="2032" y="84"/>
         </scene>
         <!--Alarm View Controller-->
         <scene sceneID="gUr-0U-FUX">
@@ -312,7 +312,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2783" y="151"/>
+            <point key="canvasLocation" x="2683" y="84"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="WUi-aA-XfA">
@@ -333,7 +333,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xzV-kM-iJY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="381.60000000000002" y="150.67466266866569"/>
+            <point key="canvasLocation" x="1089" y="85"/>
         </scene>
     </scenes>
 </document>
